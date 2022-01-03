@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Paper, TextField, Typography } from "@material-ui/core";
 import FileBase from "react-file-base64";
-import { useDispatch } from "react-redux";
-import { createPost } from "../../actions/posts";
+import { useDispatch, useSelector } from "react-redux";
+import { createPost, updatePost } from "../../actions/posts";
 
 import useStyles from "./styles";
-const Form = () => {
-  const classes = useStyles();
-  const dispatch = useDispatch();
+const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -15,8 +13,18 @@ const Form = () => {
     tags: "",
     selectedFile: "",
   });
+  const post = useSelector((state) =>
+    currentId ? state.posts.find((data) => data._id === currentId) : null
+  );
+  useEffect(() => {
+    if (post) setPostData(post);
+  }, [post]);
+
+  const classes = useStyles();
+  const dispatch = useDispatch();
 
   const clear = () => {
+    setCurrentId(null);
     setPostData({
       creator: "",
       title: "",
@@ -25,11 +33,17 @@ const Form = () => {
       selectedFile: "",
     });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createPost(postData));
+    if (currentId) {
+      dispatch(updatePost(currentId, postData));
+    } else {
+      dispatch(createPost(postData));
+    }
     clear();
   };
+
   return (
     <Paper className={classes.paper}>
       <form
@@ -38,7 +52,9 @@ const Form = () => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">Post a Memory</Typography>
+        <Typography variant="h6">
+          {currentId ? "Edit your Memory" : "Post a Memory"}
+        </Typography>
         <TextField
           name="creator"
           variant="outlined"
@@ -96,7 +112,7 @@ const Form = () => {
           type="submit"
           fullWidth
         >
-          Submit
+          {currentId ? "Save" : "Post"}
         </Button>
         <Button
           variant="contained"
