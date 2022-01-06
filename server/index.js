@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import postRoutes from "./routes/posts.js";
+import userRouter from "./routes/user.js";
 /*--------------------------------------------------------*/
 const app = express();
 const CONNECTION_URL = "mongodb://localhost:27017/memories";
@@ -12,6 +13,7 @@ app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 
 app.use("/posts", postRoutes);
+app.use("/user", userRouter);
 /*--------------------------------------------------------*/
 
 mongoose
