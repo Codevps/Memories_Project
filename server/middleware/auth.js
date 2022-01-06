@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import { secret } from "../secret.js";
 
 const auth = async (req, res, next) => {
   try {
@@ -8,7 +9,7 @@ const auth = async (req, res, next) => {
 
     if (token && isCustomAuth) {
       /*custom authentication */
-      decodedData = jwt.verify(token, "test");
+      decodedData = jwt.verify(token, secret);
       req.userId = decodedData?.id;
     } else {
       /*google authentication*/

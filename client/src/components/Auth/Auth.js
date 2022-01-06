@@ -16,6 +16,7 @@ import useStyles from "./styles";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Input from "./Input";
 import Icon from "./Icon";
+import { clientId } from "../../secret";
 
 /*------------------------------------------------*/
 const Auth = () => {
@@ -125,7 +126,7 @@ const Auth = () => {
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
           <GoogleLogin
-            clientId="40205890057-pdr13bb8clql9ki9i04mu9iadst3crp0.apps.googleusercontent.com"
+            clientId={clientId}
             render={(renderProps) => (
               <Button
                 fullWidth
