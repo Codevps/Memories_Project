@@ -1,2 +1,15 @@
-This is a full-stack "MERN" application and this is a project is refereed from "JSMASTERY" from youtube.
-this project is build by me and is used for learning "MERN" STACK and implementing it practically.
+server:
+index
+models
+routes
+controllers
+middleware (for authentication of user)
+
+client: (src)
+index
+app
+components
+constants
+reducers
+actions
+api (using axios connects to server, url of server)
