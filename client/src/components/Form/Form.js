@@ -69,7 +69,7 @@ const Form = ({ currentId, setCurrentId }) => {
         <TextField
           name="title"
           variant="outlined"
-          label="Title"
+          label="Title:"
           fullWidth
           value={postData.title}
           onChange={(e) => setPostData({ ...postData, title: e.target.value })}
@@ -77,7 +77,7 @@ const Form = ({ currentId, setCurrentId }) => {
         <TextField
           name="message"
           variant="outlined"
-          label="Message"
+          label="Message:"
           fullWidth
           multiline
           rows={4}

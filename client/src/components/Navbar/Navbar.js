@@ -34,7 +34,6 @@ const Navbar = () => {
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [location]);
 
-
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
       <div className={classes.brandContainer}>
@@ -67,7 +66,12 @@ const Navbar = () => {
             <Typography className={classes.userName} variant="h6">
               {user?.result.name}
             </Typography>
-            <Button variant="contained" color="secondary" onClick={logout}>
+            <Button
+              className={classes.logout}
+              variant="contained"
+              color="secondary"
+              onClick={logout}
+            >
               Logout
             </Button>
           </div>

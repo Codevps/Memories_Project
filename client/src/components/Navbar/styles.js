@@ -40,4 +40,55 @@ export default makeStyles((theme) => ({
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
   },
+
+  [theme.breakpoints.down("md")]: {
+    userName: {
+      display: "none",
+    },
+    heading: {
+      fontSize: "3rem",
+    },
+    image: {
+      marginLeft: "10px",
+      height: "3rem",
+    },
+    toolbar: {
+      display: "flex",
+      justifyContent: "flex-start",
+      width: "12rem",
+    },
+    logout: {
+      fontSize: "1rem",
+      width: "auto",
+      height: "auto",
+    },
+  },
+
+  [theme.breakpoints.down("xs")]: {
+    userName: {
+      display: "none",
+    },
+    appBar: {
+      padding: ".8rem",
+      flexDirection: "column",
+      margin: "20px 0",
+    },
+    heading: {
+      fontSize: "2.4rem",
+    },
+    image: {
+      marginLeft: "10px",
+      height: "2.4rem",
+    },
+    logout: {
+      fontSize: ".7rem",
+      width: "auto",
+      height: "auto",
+    },
+    toolbar: {
+      display: "flex",
+      justifyContent: "flex-start",
+      width: "12rem",
+    },
+  },
 }));
