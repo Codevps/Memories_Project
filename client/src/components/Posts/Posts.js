@@ -6,8 +6,8 @@ import useStyles from "./styles";
 
 const Posts = ({ setCurrentId }) => {
   const classes = useStyles;
-  const posts = useSelector((state) => state.posts);
-  return !posts.length ? (
+  const { posts } = useSelector((state) => state.posts);
+  return !posts?.length ? (
     <CircularProgress />
   ) : (
     <Grid
@@ -17,7 +17,7 @@ const Posts = ({ setCurrentId }) => {
       className={classes.container}
     >
       {posts.map((post) => (
-        <Grid key={post._id} xs={12} sm={6} item>
+        <Grid key={post._id} sm={12} md={6} lg={4} xl={3} item>
           <Post post={post} setCurrentId={setCurrentId} />
         </Grid>
       ))}

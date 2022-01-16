@@ -5,20 +5,37 @@ import {
   UPDATE,
   DELETE,
   LIKE,
+  FETCH_BY_SEARCH,
 } from "../constants/actionTypes";
 
-export const getPosts = () => async (dispatch) => {
-  const { data } = await api.fetchPosts();
+export const getPostsBySearch = (searchQuery) => async (dispatch) => {
   try {
-    dispatch({ type: FETCH_ALL, payload: data });
+    const {
+      data: { data },
+    } = await api.fetchPostsBySearch(searchQuery);
+
+    dispatch({ type: FETCH_BY_SEARCH, payload: data });
   } catch (error) {
     console.log(error);
   }
 };
-
-export const createPost = (post) => async (dispatch) => {
-  const { data } = await api.createPost(post);
+export const getPosts = (page) => async (dispatch) => {
   try {
+    const {
+      data: { data, currentPage, numberOfPages },
+    } = await api.fetchPosts(page);
+
+    dispatch({
+      type: FETCH_ALL,
+      payload: { data, currentPage, numberOfPages },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const createPost = (post) => async (dispatch) => {
+  try {
+    const { data } = await api.createPost(post);
     dispatch({ type: CREATE, payload: data });
   } catch (error) {
     console.log(error);
@@ -26,8 +43,8 @@ export const createPost = (post) => async (dispatch) => {
 };
 
 export const updatePost = (id, post) => async (dispatch) => {
-  const { data } = await api.updatePost(id, post);
   try {
+    const { data } = await api.updatePost(id, post);
     dispatch({ type: UPDATE, payload: data });
   } catch (error) {
     console.log(error);
@@ -44,8 +61,8 @@ export const deletePost = (id) => async (dispatch) => {
 };
 
 export const likePost = (id) => async (dispatch) => {
-  const { data } = await api.likePost(id);
   try {
+    const { data } = await api.likePost(id);
     dispatch({ type: LIKE, payload: data });
   } catch (error) {
     console.log(error);

@@ -12,7 +12,7 @@ export default makeStyles((theme) => ({
     marginTop: "1rem",
     padding: "16px",
   },
-  [theme.breakpoints.down("md")]: {
+  [theme.breakpoints.down("xs")]: {
     mainContainer: {
       flexDirection: "column-reverse",
     },

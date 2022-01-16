@@ -14,7 +14,7 @@ const Form = ({ currentId, setCurrentId }) => {
     selectedFile: "",
   });
   const post = useSelector((state) =>
-    currentId ? state.posts.find((data) => data._id === currentId) : null
+    currentId ? state.posts.posts.find((data) => data._id === currentId) : null
   );
   useEffect(() => {
     if (post) setPostData(post);
