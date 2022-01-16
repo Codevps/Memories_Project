@@ -40,7 +40,7 @@ const Home = () => {
 
   return (
     <Grow in>
-      <Container maxWidth="xl">
+      <Container maxWidth="xl ">
         <Grid
           className={classes.mainContainer}
           container
