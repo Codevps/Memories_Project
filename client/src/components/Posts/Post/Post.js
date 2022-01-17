@@ -8,16 +8,19 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { deletePost, likePost } from "../../../actions/posts";
 import useStyles from "./styles";
 import bg from "../../../images/bg.png";
 import EditIcon from "@material-ui/icons/Edit";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
 import moment from "moment";
 
 const Post = ({ post, setCurrentId }) => {
+  const navigate = useNavigate();
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -51,8 +54,12 @@ const Post = ({ post, setCurrentId }) => {
     );
   };
 
+  const openPost = () => {
+    navigate(`/posts/${post._id}`);
+  };
+
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} elevation={6}>
       <CardMedia
         className={classes.media}
         image={post.selectedFile || bg}
@@ -76,6 +83,11 @@ const Post = ({ post, setCurrentId }) => {
           </Button>
         </div>
       )}
+      <div className={classes.postDetails}>
+        <Button style={{ color: "grey" }} size="small" onClick={openPost}>
+          <MoreHorizIcon fontSize="medium" />
+        </Button>
+      </div>
       <div className={classes.details}>
         <Typography variant="body2" color="textSecondary">
           {post.tags.map((tag) => `#${tag} `)}

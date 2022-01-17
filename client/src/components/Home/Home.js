@@ -47,13 +47,11 @@ const Home = () => {
     }
   };
 
-
   // const handleKeyPress = (e) => {
   //   if (e.keyCode === 13) {
   //     searchPost();
   //   }
   // };
-
 
   const handleAdd = (tag) => {
     setTags([...tags, tag]);
@@ -126,9 +124,11 @@ const Home = () => {
               </Button>
             </AppBar>
             <Form currentId={currentId} setCurrentId={setCurrentId} />
-            <Paper className={classes.pagination} elevation={6}>
-              <Paginate page={page} />
-            </Paper>
+            {!searchQuery && !tags.length && (
+              <Paper className={classes.pagination} elevation={6}>
+                <Paginate page={page} />
+              </Paper>
+            )}
           </Grid>
         </Grid>
       </Container>

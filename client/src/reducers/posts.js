@@ -1,15 +1,22 @@
 import {
   CREATE,
   DELETE,
+  END_LOADING,
   FETCH_ALL,
   FETCH_BY_SEARCH,
   FETCH_POST,
   LIKE,
+  START_LOADING,
   UPDATE,
 } from "../constants/actionTypes";
 
 const posts = (state = { isLoading: true, posts: [] }, action) => {
   switch (action.type) {
+    case START_LOADING:
+      return { ...state, isLoading: true };
+    case END_LOADING:
+      return { ...state, isLoading: false };
+
     case FETCH_ALL:
       return {
         ...state,
@@ -17,12 +24,11 @@ const posts = (state = { isLoading: true, posts: [] }, action) => {
         currentPage: action.payload.currentPage,
         numberOfPages: action.payload.numberOfPages,
       };
-
     case FETCH_BY_SEARCH:
-      return { ...state, posts: action.payload.data };
+      return { ...state, posts: action.payload };
 
     case FETCH_POST:
-      return { ...state, post: action.payload.post };
+      return { ...state, post: action.payload };
 
     case LIKE:
       return {
