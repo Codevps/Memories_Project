@@ -21,12 +21,12 @@ export default makeStyles((theme) => ({
   toolbar: {
     display: "flex",
     justifyContent: "flex-end",
-    width: "400px",
+    width: "auto",
   },
   profile: {
     display: "flex",
     justifyContent: "space-between",
-    width: "400px",
+    width: "auto",
   },
   userName: {
     display: "flex",
@@ -39,6 +39,8 @@ export default makeStyles((theme) => ({
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
+    marginRight: "15px",
+    marginLeft: "15px",
   },
 
   [theme.breakpoints.down("md")]: {
@@ -62,6 +64,12 @@ export default makeStyles((theme) => ({
       width: "auto",
       height: "auto",
     },
+  },
+  logout: {
+    marginRight: "15px",
+    marginLeft: "15px",
+    width: "auto",
+    height: "auto",
   },
 
   [theme.breakpoints.down("xs")]: {

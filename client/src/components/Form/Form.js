@@ -43,7 +43,7 @@ const Form = ({ currentId, setCurrentId }) => {
         updatePost(currentId, { ...postData, name: user?.result?.name })
       );
     } else {
-      dispatch(createPost({ ...postData, name: user?.result?.name }));
+      dispatch(createPost({ ...postData, name: user?.result?.name }, navigate));
     }
     clear();
   };
