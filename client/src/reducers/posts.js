@@ -1,4 +1,5 @@
 import {
+  COMMENT,
   CREATE,
   DELETE,
   END_LOADING,
@@ -12,6 +13,17 @@ import {
 
 const posts = (state = { isLoading: true, posts: [] }, action) => {
   switch (action.type) {
+    case COMMENT:
+      return {
+        ...state,
+        posts: state.posts.map((post) => {
+          if (post._id === action.payload._id) {
+            return action.payload;
+          } else {
+            return post;
+          }
+        }),
+      };
     case START_LOADING:
       return { ...state, isLoading: true };
     case END_LOADING:
